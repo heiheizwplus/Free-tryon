@@ -203,9 +203,9 @@ class VTO(pl.LightningModule):
         self.val_scheduler.set_timesteps(50)
         
         if self.vae_type == 'enhance' and self.dataset=='vitonhd':
-            self.vae = Enhance_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="enhance-vae-hd")
+            self.vae = Enhance_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="enhance_vae-hd")
         elif self.vae_type == 'enhance' and self.dataset=='dresscode':
-            self.vae = Enhance_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="enhance-vae-dc")
+            self.vae = Enhance_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="enhance_vae-dc")
         else:
             self.vae = Origin_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="vae")
         

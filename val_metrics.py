@@ -1,3 +1,10 @@
+# @inproceedings{morelli2023ladi,
+#   title={{LaDI-VTON: Latent Diffusion Textual-Inversion Enhanced Virtual Try-On}},
+#   author={Morelli, Davide and Baldrati, Alberto and Cartella, Giuseppe and Cornia, Marcella and Bertini, Marco and Cucchiara, Rita},
+#   booktitle={Proceedings of the ACM International Conference on Multimedia},
+#   year={2023}
+# }
+
 import argparse
 import json
 import os
@@ -103,7 +110,7 @@ class GenTestDataset(torch.utils.data.Dataset):
 
 
 def compute_metrics(gen_folder: str, test_order: str, dataset: str, category: str, metrics2compute: List[str],
-                    dresscode_dataroot: str, vitonhd_dataroot: str, generated_size: Tuple[int, int] = (512, 384),
+                    dresscode_dataroot: str, vitonhd_dataroot: str, generated_size: List[int, int] = [512, 384],
                     batch_size: int = 32, workers: int = 8) -> Dict[str, float]:
     """
     Computes the metrics for the generated images in gen_folder
@@ -235,6 +242,8 @@ if __name__ == '__main__':
     parser.add_argument("--category", type=str, choices=['all', 'lower_body', 'upper_body', 'dresses'], default='all')
     parser.add_argument("--batch_size", type=int, default=32, help="Batch size for the dataloaders")
     parser.add_argument("--workers", type=int, default=8, help="Number of workers for the dataloaders")
+    parser.add_argument("--height", type=int, default=512, help="Height of the generated images")
+    parser.add_argument("--width", type=int, default=384, help="Width of the generated images")
 
     args = parser.parse_args()
 
@@ -250,7 +259,7 @@ if __name__ == '__main__':
 
     metrics = compute_metrics(args.gen_folder, args.test_order, args.dataset, args.category, ['all'],
                               args.dresscode_dataroot, args.vitonhd_dataroot, batch_size=args.batch_size,
-                              workers=args.workers)
+                              workers=args.workers,generated_size=[args.height,args.width])
 
     # Print the metrics
     for k, v in metrics.items():

@@ -205,9 +205,9 @@ class VTO(pl.LightningModule):
         self.val_scheduler.set_timesteps(50)
         
         if self.vae_type == 'enhance' and self.dataset=='vitonhd':
-            self.vae = Enhance_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="enhance-vae-hd")
+            self.vae = Enhance_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="enhance_vae-hd")
         elif self.vae_type == 'enhance' and self.dataset=='dresscode':
-            self.vae = Enhance_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="enhance-vae-dc")
+            self.vae = Enhance_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="enhance_vae-dc")
         else:
             self.vae = Origin_AutoencoderKL.from_pretrained(self.pretrained_model_name_or_path, subfolder="vae")
 
@@ -344,7 +344,7 @@ if __name__=='__main__':
         train_dataset = DressCodeDataset(
             dataroot_path=args.dresscode_dataroot,
             phase='train',
-            order=args.test_order,
+            order='unpaired' if args.prepare_data_for_t2 else 'paired',
             radius=5,
             category=['dresses', 'upper_body', 'lower_body'],
             size=(args.height, args.width),
@@ -436,7 +436,7 @@ if __name__=='__main__':
         log_every_n_steps=200,max_epochs=args.num_train_epochs,
         profiler='simple',benchmark=True,) 
     
-    if args.prepare_data_for_t2:
+    if not args.prepare_data_for_t2:
         trainer.test(model,test_dataloader)
     else:
         trainer.test(model,train_dataloader)

@@ -33,7 +33,7 @@ from PIL import Image
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="VTO training script.")
+    parser = argparse.ArgumentParser(description="VTO inference script.")
     parser.add_argument("--dataset", type=str,default='vitonhd', required=True, choices=["dresscode", "vitonhd"], help="dataset to use")
 
     parser.add_argument("--pretrained_model_name_or_path",type=str,default="zwpro/Free-TryOn",

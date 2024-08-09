@@ -77,7 +77,10 @@ class DressCodeDataset(data.Dataset):
 
             dataroot = os.path.join(self.dataroot, c)
             if phase == 'train':
-                filename = os.path.join(dataroot, f"{phase}_pairs_{order}.txt")
+                if order == 'paired':
+                    filename = os.path.join(dataroot, f"{phase}_pairs.txt")
+                else:
+                    filename = os.path.join(dataroot, f"{phase}_pairs_{order}.txt")
             else:
                 filename = os.path.join(dataroot, f"{phase}_pairs_{order}.txt")
 
@@ -336,7 +339,7 @@ class DressCodeDataset(data.Dataset):
 
 
         if "densepose" in self.outputlist:
-            uv = Image.open(os.path.join(dataroot, 'densepose', im_name))
+            uv = Image.open(os.path.join(dataroot, 'image-densepose', im_name))
             uv=uv.resize((self.width, self.height), Image.NEAREST)
             densepose=self.transform(uv)
 

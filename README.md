@@ -44,12 +44,12 @@ python inference.py --dataset [dresscode | vitonhd] --model_image <path> --garme
 - Inference is supported at both 512x384 and 1024x768 resolutions, with 1024x768 only supported using weights trained on the VITON-HD dataset, i.e., `--dataset vitonhd --height 1024 --width 768`.
 
 ## Data Preparation
-You can directly download our pre-processed data from [BaiduYun]().
+You can directly download our pre-processed data from [BaiduYun](https://pan.baidu.com/s/1jhoe0g7j9dgVN2Ng-ZiJgQ?pwd=tve3).
 ### Dresscode
 1. Download the [DressCode](https://github.com/aimagelab/dress-code) dataset
 2. The text annotations for garment images in the DressCode dataset are stored in `data/dresscode/text.json`.
 3. For traing or tesing the tryon model T1, you need to download the densepose files from the following
-   link: [BaiduYun](). Once downloaded,
+   link: [BaiduYun](https://pan.baidu.com/s/1jhoe0g7j9dgVN2Ng-ZiJgQ?pwd=tve3). Once downloaded,
    please
    extract the densepose files and place them in the dataset folder alongside the corresponding images.
 
@@ -82,7 +82,7 @@ Once the dataset is downloaded, the folder structure should look like this:
 1. Download the [VITON-HD](https://github.com/shadow2496/VITON-HD) dataset
 2. The text annotations for garment images in the VITON-HD dataset are stored in `data/vitonhd/text.json`.
 3. For traing or tesing the tryon model T1, you need to download the densepose files from the following
-   link: [BaiduYun](). Once downloaded,
+   link: [BaiduYun](https://pan.baidu.com/s/1jhoe0g7j9dgVN2Ng-ZiJgQ?pwd=tve3). Once downloaded,
    please
    extract the densepose files and place them in the dataset folder alongside the corresponding images.
 
